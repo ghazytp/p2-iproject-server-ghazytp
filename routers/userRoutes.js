@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 router.get('/', (req, res) => {
-    res.send('game')
+    res.send('user')
 })
 
 module.exports = router
