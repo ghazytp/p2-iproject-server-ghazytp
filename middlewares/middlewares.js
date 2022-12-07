@@ -17,6 +17,7 @@ const authz = async (req, res, next) => {
 }
 
 const errorHandler = async (err, req, res, next) => {
+    console.log(err, 'DARI MIDDLEWARES ERROR HANDLER');
     let code = 500
     let message = "Internal server error"
 
@@ -36,6 +37,14 @@ const errorHandler = async (err, req, res, next) => {
         case "NOT_FOUND":
             code = 404,
             message = "Not Found"
+            break;
+        case "INVALID_CREDENTIALS":
+            code = 400,
+            message = "Invalid email / password"
+            break;
+        case "SequelizeUniqueConstraintError":
+            code = 400,
+            message = err.errors[0].message
             break;
     }
 
